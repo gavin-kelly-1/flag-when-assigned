@@ -16,7 +16,7 @@ async function run() {
     // const octokit = github.getOctokit(myToken, {userAgent: "MyActionVersion1"});
   
     console.log("Getting topics...");
-    const topics = await octokit.rest.repos.getAllTopics({...context.repo});
+    const {data: topics} = await octokit.rest.repos.getAllTopics({...context.repo});
     console.log(JSON.stringify(topics));
     if (topics.names.indexOf("changed") === -1) {
 	    console.log("Settings topics...");
