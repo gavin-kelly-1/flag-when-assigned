@@ -17,7 +17,7 @@ async function run() {
   
     console.log("Getting topics...");
     const topics = await octokit.rest.repos.getAllTopics({...context.repo});
-    
+    console.log(JSON.stringify(topics));
     if (topics.names.indexOf("changed") === -1) {
 	    console.log("Settings topics...");
 
