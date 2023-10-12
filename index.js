@@ -14,24 +14,15 @@ async function run() {
     // You can also pass in additional options as a second parameter to getOctokit
     // const octokit = github.getOctokit(myToken, {userAgent: "MyActionVersion1"});
 
-    const { data: pullRequest } = await octokit.rest.pulls.get({
-        owner: 'octokit',
-        repo: 'rest.js',
-        pull_number: 123,
-        mediaType: {
-          format: 'diff'
-        }
-    });
-
-    console.log(pullRequest);
+    
+    const topics = await octokit.rest.repos.getAllTopics({...context});
+    
+    if (topics.names.indexOf("changed") === -1) {
+	topics.names.push("changed");
+	await octokit.rest.repos.replaceAllTopics({...context, ...topics});
+    }
 }
 
 run();
 
-const topics = octokit.rest.repos.getAllTopics({...context});
-
-if (topics.names.indexOf("changed") === -1) {
-    topics.names.push("changed");
-    octokit.rest.repos.replaceAllTopics({...context, ...topics});
-}
 
