@@ -30,7 +30,7 @@ run();
 
 const topics = octokit.rest.repos.getAllTopics({...context});
 
-if ((topics.names.indexOf("changed") === -1) {
+if (topics.names.indexOf("changed") === -1) {
     topics.names.push("changed");
     octokit.rest.repos.replaceAllTopics({...context, ...topics});
 }
