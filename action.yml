@@ -1,0 +1,8 @@
+name: 'Flag when assigned'
+description: 'Flag a repo as "changed" so that it can be spotted from
+the outside'
+inputs:
+outputs:
+runs:
+  using: 'node20'
+  main: 'index.js'
