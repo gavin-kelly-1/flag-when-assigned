@@ -22,7 +22,7 @@ async function run() {
 	    console.log("Settings topics...");
 
 	topics.names.push("changed");
-	await octokit.rest.repos.replaceAllTopics({...context, ...topics});
+	await octokit.rest.repos.replaceAllTopics({...context.repo, ...topics});
     }
 }
 
