@@ -1,6 +1,7 @@
 // const core = require('@actions/core');
 const github = require('@actions/github');
-console.log(JSON.stringify(github.event));
+console.log(JSON.stringify(github));
+
 // const context = github.context;
 
 // async function run() {
