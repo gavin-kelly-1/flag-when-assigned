@@ -43,7 +43,7 @@ async function run() {
 	await octokit.request('PUT /repos/{owner}/{repo}/topics', {
 	    owner: owner,
 	    repo: repo,
-	    names: topics
+	    names: topics,
 	    headers: {
 		'X-GitHub-Api-Version': '2022-11-28'
 	    }
