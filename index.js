@@ -41,7 +41,7 @@ async function run() {
 	repo: repo,
 	issue_number: github.context.payload.issue.number,
 	labels: [
-	    'changed'
+	    'canged'
 	],
 	headers: {
 	    'X-GitHub-Api-Version': '2022-11-28'
