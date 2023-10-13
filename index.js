@@ -34,24 +34,19 @@ const { Octokit } = require("@octokit/action");
 
 const octokit = new Octokit();
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
+
 async function run() {
-    const {data} = await octokit.request("GET /repos/{owner}/{repo}/topics", {
+    await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/labels', {
 	owner: owner,
 	repo: repo
-    });
-    console.log(JSON.stringify(data));
-    if (data.names.indexOf("changed") === -1) {
-	console.log("Settings data.names...");
-	data.names.push("changed");
-	await octokit.request('PUT /repos/{owner}/{repo}/topics', {
-	    owner: owner,
-	    repo: repo,
-	    names: data.names,
-	    headers: {
-		'X-GitHub-Api-Version': '2022-11-28'
-	    }
-	})
-    }
+	issue_number: github.context.payload.issue.number,
+	labels: [
+	    'changed'
+	],
+	headers: {
+	    'X-GitHub-Api-Version': '2022-11-28'
+	}
+    })
 }
 
 run();
