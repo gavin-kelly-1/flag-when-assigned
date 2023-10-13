@@ -38,7 +38,7 @@ const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 async function run() {
     await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/labels', {
 	owner: owner,
-	repo: repo
+	repo: repo,
 	issue_number: github.context.payload.issue.number,
 	labels: [
 	    'changed'
